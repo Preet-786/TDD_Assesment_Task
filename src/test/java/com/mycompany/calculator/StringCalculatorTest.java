@@ -8,17 +8,20 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Preet
  */
 public class StringCalculatorTest {
-    public StringCalculator CalcObj;
+    public StringCalculator calcObj;
     
     public StringCalculatorTest() {
-        CalcObj = new StringCalculator();
+        calcObj = new StringCalculator();
     }
     /**
      * Test of Add method, of class StringCalculator.
      */
     @org.junit.jupiter.api.Test
     public void testAdd() {
-        assertEquals(0,CalcObj.Add(""));
+        //1st test cases
+        assertEquals(0,calcObj.Add(""));
+        assertEquals(3,calcObj.Add("3"));
+        assertEquals(5,calcObj.Add("1,4"));
     }
     
 }

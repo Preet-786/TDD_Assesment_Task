@@ -12,13 +12,23 @@ package com.mycompany.calculator;
 public class StringCalculator {
     
     public int Add(String numbers){
+        String[] nums = numbers.split(",");
         if(numbers.isEmpty()){
             return 0;
         }
-        return Integer.parseInt(numbers);
+        else if(nums.length==1){
+            return stringToInt(nums[0]);
+        }
+        else{
+            return findSum(stringToInt(nums[0]),stringToInt(nums[1]));
+        }
     }
     
     private int stringToInt(String str){
         return Integer.parseInt(str);
+    }
+    
+    private int findSum(int n1, int n2){
+        return n1+n2;
     }
 }
