@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.calculator;
 
 /**
@@ -12,15 +7,18 @@ package com.mycompany.calculator;
 public class StringCalculator {
     
     public int Add(String numbers){
-        String[] nums = numbers.split(",");
+    
         if(numbers.isEmpty()){
             return 0;
         }
-        else if(nums.length==1){
-            return stringToInt(nums[0]);
-        }
         else{
-            return findSum(stringToInt(nums[0]),stringToInt(nums[1]));
+            String seprator = ",";
+            if(numbers.matches("//(.*)\n(.*)")){
+                    seprator = Character.toString(numbers.charAt(2));
+                    numbers = numbers.substring(4);
+            }
+            String nums[] = numbers.split(seprator+"|\n");
+            return findSum(nums);
         }
     }
     
@@ -28,7 +26,16 @@ public class StringCalculator {
         return Integer.parseInt(str);
     }
     
-    private int findSum(int n1, int n2){
-        return n1+n2;
+    private int findSum(String[] nums){
+        String negValues = "";
+        int addition = 0;
+        for(String value: nums){
+            if(stringToInt(value) < 0) negValues += ", "+value;
+            addition += stringToInt(value);
+        }
+        if(!negValues.isEmpty()){
+            throw new IllegalArgumentException("Negatives not allowed: " + negValues.substring(2));
+        }
+        return addition;
     }
 }
