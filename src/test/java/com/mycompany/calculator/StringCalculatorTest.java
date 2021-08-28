@@ -13,6 +13,7 @@ public class StringCalculatorTest {
     public StringCalculatorTest() {
         calcObj = new StringCalculator();
     }
+    
     /**
      * Test of Add method, of class StringCalculator.
      */
@@ -32,6 +33,9 @@ public class StringCalculatorTest {
        
         //5th and 6th test case
         testNegative();
+        
+        //9th test case
+        testGreaterThanThousandValue();
 
     }
     
@@ -75,5 +79,11 @@ public class StringCalculatorTest {
         catch (IllegalArgumentException e){
             assertEquals(e.getMessage(), "Negatives not allowed: -2, -9, -3");
         }
+    }
+    
+    @Test
+    public void testGreaterThanThousandValue(){
+        assertEquals(11,calcObj.Add("2,4,1003,5"));
+        assertEquals(3,calcObj.Add("//;\n2000;3"));
     }
 }

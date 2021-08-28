@@ -31,7 +31,7 @@ public class StringCalculator {
         int addition = 0;
         for(String value: nums){
             if(stringToInt(value) < 0) negValues += ", "+value;
-            addition += stringToInt(value);
+            else if(stringToInt(value) <= 1000) addition += stringToInt(value);
         }
         if(!negValues.isEmpty()){
             throw new IllegalArgumentException("Negatives not allowed: " + negValues.substring(2));
