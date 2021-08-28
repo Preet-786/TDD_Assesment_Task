@@ -36,6 +36,9 @@ public class StringCalculatorTest {
         
         //9th test case
         testGreaterThanThousandValue();
+        
+        //10th, 11th and 12th test case
+        testAnyLengthDelimeter();
 
     }
     
@@ -85,5 +88,12 @@ public class StringCalculatorTest {
     public void testGreaterThanThousandValue(){
         assertEquals(11,calcObj.Add("2,4,1003,5"));
         assertEquals(3,calcObj.Add("//;\n2000;3"));
+    }
+    
+    @Test
+    public void testAnyLengthDelimeter(){
+        assertEquals(6,calcObj.Add("//[***]\n1***2***3"));
+        assertEquals(7,calcObj.Add("//[**][^][%]\n1**2%3^1"));
+        assertEquals(6,calcObj.Add("//[*][%]\n1*2%3"));
     }
 }
